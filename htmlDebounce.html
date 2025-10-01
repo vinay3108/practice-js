@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="name" id="name" onkeyup="processChange()">
+<script>
+    function debounce(func,timeout=300){
+        let timer;
+        return (...arg)=>{
+            clearTimeout(timer);
+            timer = setTimeout(()=>{func.apply(this,arg)},timeout);
+        }
+    }
+    function saveInput(){
+        console.log("save");
+    }
+    const processChange = debounce(()=>saveInput(),3000);
+</script>
+</body>
+</html>
