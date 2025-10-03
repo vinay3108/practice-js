@@ -9,6 +9,7 @@ const myPromiseRace = (promises) => {
         });
     });
 };
+
 myPromiseRace([
     new Promise((resolve, reject) => {
         setTimeout(() => {

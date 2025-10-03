@@ -1,15 +1,18 @@
-// const file = require('fs');
+const file = require('fs');
 
-// const readable=  file.createReadStream('temp.txt',{encoding:'utf8',highWaterMark:1000*1024});
-// const writeable= file.createWriteStream('temp2.txt',{encoding:'utf8'});
-// let i=0;
-// readable.on('data',(chunk)=>{
-//     i++;
-//     console.log(chunk.length,i);
-// })
-// // readable.pipe(writeable);
-// readable.on('end',()=>console.log("done"));
+const readable=  file.createReadStream('temp.txt',{encoding:'utf8',highWaterMark:1000*1024});
+const writeable= file.createWriteStream('temp2.txt',{encoding:'utf8'});
+let i=0;
+readable.on('data',(chunk)=>{
+    i++;
+    console.log(chunk.length,i);
+})
+// readable.pipe(writeable);
+readable.on('end',()=>console.log("done"));
 
+
+
+// ****************write************************
 // const fs = require('fs');
 // const writable = fs.createWriteStream('out.txt');
 
@@ -31,16 +34,16 @@
 
 
 
-// const { Transform } = require('stream');
+const { Transform } = require('stream');
 
-// const upperCase = new Transform({
-//   transform(chunk, encoding, callback) {
-//     this.push(chunk.toString().toUpperCase());
-//     callback();
-//   }
-// });
+const upperCase = new Transform({
+  transform(chunk, encoding, callback) {
+    this.push(chunk.toString().toUpperCase());
+    callback();
+  }
+});
 
-// process.stdin.pipe(upperCase).pipe(process.stdout);
+process.stdin.pipe(upperCase).pipe(process.stdout);
 
 
 

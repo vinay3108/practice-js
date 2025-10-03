@@ -1,11 +1,7 @@
-function debounce(thisArg,wait=200,options={immediate:false}){
-    let timer = null;
-    function debounced(...args){
-        const context = this;
-        const later = () =>{
-            timer=null;
-            if(!options.immediate) thisArg.apply(context,args);
-        }
-        const callNow = 
+function debounce(func,timeout=300){
+    let timer;
+    return (...arg)=>{
+        clearTimeout(timer);
+        timer = setTimeout(()=>{func.apply(this,arg)},timeout);
     }
 }
