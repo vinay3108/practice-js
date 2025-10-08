@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="timer">go</p>
+    <button onclick="runTimer()">start</button>
+</body>
+<script>
+    function runTimer(){
+        let startValue = 60;
+        const timer = document.getElementById('timer');
+        const clearId=setInterval(()=>{
+            timer.innerHTML =  startValue;
+            startValue--;
+            if(startValue<0){
+                clearInterval(clearId);
+            }
+        },100);
+    }
+</script>
+</html>

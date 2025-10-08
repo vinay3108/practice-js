@@ -66,4 +66,32 @@ Function.prototype.myCall = function(thisArg,...args){
     return result;
 }
 
-console.log(greet.myCall(person,'hello','!!!'));
+// console.log(greet.myCall(person,'hello','!!!'));
+
+
+Array.prototype.myReduce = function(callback,initialValue){
+    if(typeof callback !=='function'){
+        return new TypeError('');
+    }
+    let arr = this;
+    let startIndex;
+    let accumulator;
+    if(arguments.length>=2){ //we have initialValue
+        accumulator=initialValue;
+        startIndex=0;
+    }else{
+        if(arr.length==0){
+            return new TypeError("array should not be empty");
+        }
+        startIndex=1;
+        accumulator=arr[0];
+    }
+    for(let i=startIndex;i<arr.length;i++){
+        if(i in arr){
+            accumulator=callback(accumulator,arr[i],i,arr);
+        }
+    }
+    return accumulator;
+}
+
+console.log([1,2,3].myReduce((accumulator,currVal)=> [...accumulator,currVal*2],[]));
