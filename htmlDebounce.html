@@ -29,6 +29,14 @@
             timer=setTimeout(()=>{callback.apply(this,args)},timeout);
         }
     }
+
+    function debounce2(callback,timeout=3000){
+        let timer;
+        return function(...args){
+            clearTimeout(timer);
+            timers=setTimeout(()=>{callback.apply(this,args)},timeout)
+        }
+    }
 </script>
 </body>
 </html>

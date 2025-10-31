@@ -31,12 +31,20 @@ function customDelay(ms,value){
 
 
 //Sequential
-function runInSequence (fns) {
-    return fns.reduce((previous, fn) => {
-        return previous.then(results=>
-            fn().then(res=>[...results,res])
-        )
-    },Promise.resolve([]));
+// function runInSequence (fns) {
+//     return fns.reduce((previous, fn) => {
+//         return previous.then(results=>
+//             fn().then(res=>[...results,res])
+//         )
+//     },Promise.resolve([]));
+// }
+
+function runInSequence(promises){
+  return promises.reduce((acc, currentFn) => {
+      return acc.then((result)=>{
+        return currentFn().then((val)=>[...result,val]);
+      })
+  }, Promise.resolve([]));
 }
 
 
@@ -93,6 +101,41 @@ function sometimesFails() {
   });
 }
 
-retry(sometimesFails, 5)
-  .then(console.log)  // "success 3"
-  .catch(console.error);
+// retry(sometimesFails, 5)
+//   .then(console.log)  // "success 3"
+//   .catch(console.error);
+
+// obj={
+//   to:['a','b','b'],
+//   cc:['a','b','c'],
+//   bcc:['d','e','f','a']
+// }
+
+
+// const simplify = (obj) => {
+
+//   const set = new Set()
+
+//   const res = {}
+
+//   Object.keys(obj).map((key) => {
+
+//     let arr = []
+
+//     obj[key].map((val) => {
+//       if(!set.has(val)){
+//         set.add(val)
+//         arr.push(val)
+//       }
+//     })
+
+//     res[key] = [...arr]
+//   })
+
+//   return res
+// }
+
+// console.log(simplify(obj))
+
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler

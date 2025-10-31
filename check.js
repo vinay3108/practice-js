@@ -145,14 +145,17 @@ Function.prototype.myBind = function (context,...bindArgs) {
     let originalFn = this;
     return function(...callArgs){
         if(this instanceof originalFn){
+            console.log("here");
             return new originalFn(...bindArgs,...callArgs);
         }
         return originalFn.myApply(context,[...bindArgs,...callArgs]);
     }
 }
 
-// const bind = greet.myBind(person,'hello');
-// console.log(bind('ccccccccc'));
+const bind = greet.myBind(person,'hello');
+const bind2 = greet.myBind(greet);
+console.log(bind2("vinaay"));
+console.log(bind('ccccccccc'));
 
 function retry(fn,maxCnt){
     return new Promise((resolve,reject)=>{
