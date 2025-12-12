@@ -120,12 +120,12 @@ const myPromiseAll = function(promises){
 }
 const p1 = new Promise((resolve,reject)=>{
     setTimeout(()=>{
-        resolve("vinay");
+        return resolve("vinay");
     },3000)
 })
 const p2 = new Promise((resolve,reject)=>{
     setTimeout(()=>{
-        resolve("kumar");
+        return resolve("kumar");
     },4000)
 })
 myPromiseAll([p1,p2]).then((res)=>console.log(res));

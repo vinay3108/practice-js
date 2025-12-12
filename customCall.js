@@ -12,7 +12,7 @@ Function.prototype.myCall = function(context,...args){
 }
 
 function sayHello(greeting, punctuation) {
-    return `${greeting}, I am ${this.name}${punctuation}`;
+    return `${greeting}, I am ${this.name} ${punctuation}`;
 }
 
 const person = { name: "Vinay" };

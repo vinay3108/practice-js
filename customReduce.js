@@ -35,31 +35,93 @@
 // console.log([1,2,3,4,5].myReduce((accumulator,currentValue)=>{return [...accumulator,2*currentValue]},[]));
 
 
-Array.prototype.myReduce = function(callback, initialValue) {
-    if(typeof callback !=='function'){
-        return new TypeError("callback should be a function");
-    }
-    const arr = this;
-    let accumulator;
-    let startIndex;
-    if(arguments.length>=2){ //i.e initialValue provided
-        accumulator=initialValue;
-        startIndex=0;
+// Array.prototype.myReduce = function(callback, initialValue) {
+//     if(typeof callback !=='function'){
+//         return new TypeError("callback should be a function");
+//     }
+//     const arr = this;
+//     let accumulator;
+//     let startIndex;
+//     if(arguments.length>=2){ //i.e initialValue provided
+//         accumulator=initialValue;
+//         startIndex=0;
 
+//     }else{
+//         if(arr.length==0){
+//             throw new TypeError("arr should not be empty");
+//         }
+//         accumulator=arr[0];
+//         startIndex=1;
+//     }
+
+//     for(let i=startIndex;i<arr.length;i++){
+//         if(i in arr){
+//             accumulator = callback(accumulator,arr[i],i,arr);
+//         }
+//     }
+//     return accumulator;
+// }
+
+// console.log([1,2,3,4,5].myReduce((accumulator,currentValue)=>{return [...accumulator,2*currentValue]},[]));
+
+
+// Array.prototype.myReduce = function (callback,initialValue){
+//     if(typeof callback !='function'){
+//         return new TypeError("callback should be function");
+//     }
+//     const arr = this;
+
+//     let accumulator;
+//     let startIndex;
+//     if(arguments.length>=2){
+//         accumulator=initialValue;
+//         startIndex=0;
+//     }else {
+//         if(arr.length==0){
+//             throw new TypeError("array should not be empty");
+//         }
+//         accumulator=arr[0];
+//         startIndex=1;
+//     }
+//     for(let i=startIndex;i<arr.length;i++){
+//         if(i in arr){
+//             accumulator=callback(accumulator,arr[i],i,arr);
+//         }
+//     }
+//     return accumulator;
+// }
+
+Array.prototype.myReduce = function(callback,initialValue){
+    if(typeof callback !=='function'){
+        return new TypeError("callback should be function");
+    }
+    let startIndex;
+    let accumulator;
+    const arr = this;
+    if(arguments.length>=2){
+        startIndex=0;
+        accumulator=initialValue;
     }else{
         if(arr.length==0){
-            throw new TypeError("arr should not be empty");
+            return TypeError('array should not be empty');
         }
-        accumulator=arr[0];
         startIndex=1;
+        accumulator=arr[0];
     }
-
     for(let i=startIndex;i<arr.length;i++){
         if(i in arr){
-            accumulator = callback(accumulator,arr[i],i,arr);
+            accumulator=callback(accumulator,arr[i],i,arr);
         }
     }
     return accumulator;
 }
+console.log([1,2,3].myReduce((acc,val)=>{
+    acc+=val
+    return acc;
+}));
 
-console.log([1,2,3,4,5].myReduce((accumulator,currentValue)=>{return [...accumulator,2*currentValue]},[]));
+
+console.log([1,2,3].reduce((acc,val)=>{
+    acc+=val
+    return acc;
+},5));

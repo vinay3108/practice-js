@@ -55,7 +55,7 @@ const myPromiseAll =(promises)=>{
 }
 
 const start = performance.now();
-const p1 = new Promise((resolve,reject)=>setTimeout(()=>{resolve(20)},2000));
+const p1 = new Promise((resolve,reject)=>setTimeout(()=>{resolve(20)},7000));
 const p2 = new Promise((resolve,reject)=>setTimeout(()=>{resolve(40)},5000));
 myPromiseAll([p1,p2])
 .then((res)=>{
